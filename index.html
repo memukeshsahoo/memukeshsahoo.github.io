@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mukesh — Software Developer</title>
+  <meta name="description" content="Mukesh — Backend Developer (C#, .NET, EF Core, PostgreSQL). Portfolio." />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#4f46e5; --glass: rgba(255,255,255,0.03);
+      --maxw:1000px; --radius:12px; --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Inter,Segoe UI,system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(180deg,#071028 0%, #07121a 60%); color:#e6eef6; -webkit-font-smoothing:antialiased;
+      line-height:1.5; padding:28px;
+      display:flex; justify-content:center;
+    }
+    .wrap{width:100%; max-width:var(--maxw)}
+    header{display:flex;gap:16px;align-items:center; justify-content:space-between;margin-bottom:18px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#2563eb);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--mono);font-size:18px}
+    .name{line-height:1}
+    .name h1{margin:0;font-size:20px}
+    .name p{margin:0;color:var(--muted);font-size:13px}
+    nav{display:flex;gap:10px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-size:14px}
+    nav a:hover{background:var(--glass);color:#fff}
+
+    main{display:grid;grid-template-columns:1fr 340px;gap:20px}
+    @media (max-width:900px){main{grid-template-columns:1fr} header{flex-direction:column;align-items:flex-start} .logo{width:48px;height:48px}}
+
+    /* left column */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    .hero{display:flex;gap:16px;align-items:center}
+    .avatar{width:80px;height:80px;border-radius:12px;background:linear-gradient(135deg,#374151,#111827);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;font-family:var(--mono)}
+    .hero h2{margin:0;font-size:18px}
+    .muted{color:var(--muted);font-size:13px}
+    .section{margin-top:16px}
+    h3{margin:0 0 10px 0;font-size:15px}
+    .projects{display:grid;gap:12px}
+    .project{padding:12px;border-radius:10px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.02)}
+    .project h4{margin:0 0 6px 0;font-size:14px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--muted)}
+
+    .skills{display:flex;gap:8px;flex-wrap:wrap}
+    .skill{background:rgba(255,255,255,0.02);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#2563eb);color:white}
+    .links{display:flex;gap:8px;margin-top:8px}
+
+    /* right column */
+    aside .card{position:sticky;top:20px}
+    .contact-list{display:flex;flex-direction:column;gap:8px}
+    .contact-item{display:flex;flex-direction:column}
+    .small{font-size:13px;color:var(--muted)}
+    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
+    /* small utilities */
+    .meta{font-size:13px;color:var(--muted)}
+    .proj-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:13px;color:var(--muted)}
+    a.inline{color:inherit;text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">MK</div>
+        <div class="name">
+          <h1>Mukesh</h1>
+          <p class="muted">Backend Developer — C#, .NET, EF Core, PostgreSQL</p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="#resume" class="btn btn-primary">Resume</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <div class="card hero">
+          <div class="avatar">M</div>
+          <div>
+            <h2>Mukesh — Backend Developer</h2>
+            <p class="muted">2.5 years building REST APIs, real-time features with SignalR, wallet & payments, and cross-platform PDF generation.</p>
+            <div class="links" style="margin-top:10px">
+              <a href="#projects" class="btn">See projects</a>
+              <a href="mailto:your.email@example.com" class="btn">Email</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="projects" class="section">
+          <h3>Selected Projects</h3>
+          <div class="projects">
+
+            <article class="project">
+              <h4>AutoECare (Case study)</h4>
+              <div class="meta">Role: Backend lead — .NET 9, EF Core, PostgreSQL, SignalR</div>
+              <p class="muted" style="margin-top:8px">Built wallet (multi-role), Razorpay integration, commission split, transaction logging, SignalR chat, Puppeteer Sharp invoice generation, FCM notifications and analytics endpoints.</p>
+              <div class="proj-meta">
+                <div class="tags">
+                  <span class="tag">C#</span><span class="tag">EF Core</span><span class="tag">SignalR</span><span class="tag">Razorpay</span>
+                </div>
+                <div><a class="inline" href="https://github.com/YOUR_USERNAME/AutoECare-CaseStudy" target="_blank" rel="noopener">Case study →</a></div>
+              </div>
+            </article>
+
+            <article class="project">
+              <h4>Promotion Analytics Module</h4>
+              <div class="meta">Role: Feature owner — APIs for tracking & reporting</div>
+              <p class="muted" style="margin-top:8px">Date-wise views, click tracking, chat-open events, and vehicle-brand interaction reports with summary endpoints and efficient aggregation.</p>
+              <div class="proj-meta">
+                <div class="tags"><span class="tag">Postgres</span><span class="tag">SQL</span><span class="tag">API</span></div>
+                <div><a class="inline" href="https://github.com/YOUR_USERNAME/promotion-analytics" target="_blank">Repo →</a></div>
+              </div>
+            </article>
+
+            <article class="project">
+              <h4>Chat System (SignalR)</h4>
+              <div class="meta">Role: Implementation — Real-time messaging</div>
+              <p class="muted" style="margin-top:8px">One-to-one & group chat, typing indicators, read/delivered receipts, attachments support and online/offline tracking.</p>
+              <div class="proj-meta">
+                <div class="tags"><span class="tag">SignalR</span><span class="tag">WebSocket</span></div>
+                <div><a class="inline" href="https://github.com/YOUR_USERNAME/signalr-chat" target="_blank">Repo →</a></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div id="skills" class="section">
+          <h3>Skills</h3>
+          <div class="skills" style="margin-top:8px">
+            <span class="skill">C#/.NET</span>
+            <span class="skill">EF Core</span>
+            <span class="skill">PostgreSQL</span>
+            <span class="skill">REST APIs</span>
+            <span class="skill">SignalR</span>
+            <span class="skill">Angular</span>
+            <span class="skill">Puppeteer Sharp</span>
+            <span class="skill">FCM</span>
+            <span class="skill">Docker</span>
+          </div>
+        </div>
+
+        <div id="resume" class="section">
+          <h3>Case study / Notes</h3>
+          <p class="muted">For private/company projects: this repo contains architecture diagrams, high-level design and screenshots with dummy data. No sensitive code or database dumps.</p>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3>Contact</h3>
+          <div class="contact-list" id="contact" style="margin-top:8px">
+            <div class="contact-item"><span class="small">Email</span><strong>mukeshsahoo.109@gmail.com</strong></div>
+            <div class="contact-item"><span class="small">GitHub</span><a class="inline" href="https://github.com/memukeshsahoo" target="_blank">github.com/memukeshsahoo</a></div>
+            <div class="contact-item"><span class="small">LinkedIn</span><a class="inline" href="https://www.linkedin.com/in/memukeshsahu" target="_blank">linkedin.com/in/memukeshsahu</a></div>
+          </div>
+
+          <div class="section" style="margin-top:14px">
+            <h3>Availability</h3>
+            <p class="muted">Open to backend roles; remote/relocation considered.</p>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+        <footer>Built with plain HTML & CSS • Update README.md & pin repos on GitHub</footer>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>
