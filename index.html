@@ -5,67 +5,726 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mukesh — Software Developer</title>
   <meta name="description" content="Mukesh — Backend Developer (C#, .NET, EF Core, PostgreSQL). Portfolio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#4f46e5; --glass: rgba(255,255,255,0.03);
-      --maxw:1000px; --radius:12px; --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    :root {
+      --bg-primary: #0a0f1c;
+      --bg-secondary: #0f1724;
+      --bg-tertiary: #1a1f2e;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.06);
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --accent-primary: #6366f1;
+      --accent-secondary: #8b5cf6;
+      --accent-tertiary: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+      --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.4);
+      --glow-accent: 0 0 20px rgba(99, 102, 241, 0.3);
+      --maxw: 1100px;
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-xs: 8px;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'Cascadia Code', monospace;
       color-scheme: dark;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:Inter,Segoe UI,system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
-      background:linear-gradient(180deg,#071028 0%, #07121a 60%); color:#e6eef6; -webkit-font-smoothing:antialiased;
-      line-height:1.5; padding:28px;
-      display:flex; justify-content:center;
+
+    * {
+      box-sizing: border-box;
     }
-    .wrap{width:100%; max-width:var(--maxw)}
-    header{display:flex;gap:16px;align-items:center; justify-content:space-between;margin-bottom:18px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#2563eb);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--mono);font-size:18px}
-    .name{line-height:1}
-    .name h1{margin:0;font-size:20px}
-    .name p{margin:0;color:var(--muted);font-size:13px}
-    nav{display:flex;gap:10px}
-    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-size:14px}
-    nav a:hover{background:var(--glass);color:#fff}
 
-    main{display:grid;grid-template-columns:1fr 340px;gap:20px}
-    @media (max-width:900px){main{grid-template-columns:1fr} header{flex-direction:column;align-items:flex-start} .logo{width:48px;height:48px}}
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: 
+        radial-gradient(ellipse at top, rgba(99, 102, 241, 0.1) 0%, transparent 60%),
+        radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
 
-    /* left column */
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
-    .hero{display:flex;gap:16px;align-items:center}
-    .avatar{width:80px;height:80px;border-radius:12px;background:linear-gradient(135deg,#374151,#111827);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;font-family:var(--mono)}
-    .hero h2{margin:0;font-size:18px}
-    .muted{color:var(--muted);font-size:13px}
-    .section{margin-top:16px}
-    h3{margin:0 0 10px 0;font-size:15px}
-    .projects{display:grid;gap:12px}
-    .project{padding:12px;border-radius:10px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.02)}
-    .project h4{margin:0 0 6px 0;font-size:14px}
-    .tags{display:flex;gap:8px;flex-wrap:wrap}
-    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--muted)}
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-    .skills{display:flex;gap:8px;flex-wrap:wrap}
-    .skill{background:rgba(255,255,255,0.02);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-    .btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),#2563eb);color:white}
-    .links{display:flex;gap:8px;margin-top:8px}
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
 
-    /* right column */
-    aside .card{position:sticky;top:20px}
-    .contact-list{display:flex;flex-direction:column;gap:8px}
-    .contact-item{display:flex;flex-direction:column}
-    .small{font-size:13px;color:var(--muted)}
-    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
-    /* small utilities */
-    .meta{font-size:13px;color:var(--muted)}
-    .proj-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:13px;color:var(--muted)}
-    a.inline{color:inherit;text-decoration:underline}
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Scroll Progress */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--bg-tertiary);
+      z-index: 1000;
+    }
+
+    .scroll-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      width: var(--scroll-width, 0%);
+      transition: width 0.1s ease;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding: 1.5rem 2rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    header:hover {
+      border-color: var(--glass-border);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .brand {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-family: var(--mono);
+      font-size: 1.125rem;
+      color: white;
+      box-shadow: var(--glow-accent);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: float 6s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+      opacity: 0;
+    }
+
+    .logo:hover {
+      transform: scale(1.05) rotate(-5deg);
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
+    }
+
+    .logo:hover::before {
+      opacity: 1;
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+
+    .name h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    .name p {
+      margin: 0.25rem 0 0 0;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-xs);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--glass), transparent);
+      transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+      background: var(--glass);
+      transform: translateY(-2px);
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white !important;
+      box-shadow: var(--shadow-sm);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      box-shadow: var(--glow-accent), var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    /* Main Layout */
+    main {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+      transform: scaleX(0);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      border-color: var(--glass-border);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #374151, #111827);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: var(--mono);
+      border: 2px solid var(--card-border);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .avatar::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .avatar:hover {
+      transform: scale(1.05) rotate(5deg);
+      color: var(--accent-primary);
+    }
+
+    .avatar:hover::after {
+      opacity: 1;
+    }
+
+    .hero h2 {
+      margin: 0 0 0.75rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-xs);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--card-border);
+      background: var(--glass);
+      color: var(--text-secondary);
+    }
+
+    .btn:hover {
+      background: var(--glass-border);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Sections */
+    .section {
+      margin-top: 2rem;
+    }
+
+    h3 {
+      margin: 0 0 1.5rem 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      position: relative;
+    }
+
+    h3::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 2px;
+    }
+
+    /* Projects */
+    .projects {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .project {
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--glass);
+      border: 1px solid var(--card-border);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      transform: scaleX(0);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project:hover {
+      background: var(--card-hover);
+      border-color: var(--glass-border);
+      transform: translateX(8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .project:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project h4 {
+      margin: 0 0 0.75rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: var(--radius-xs);
+      border-left: 3px solid var(--accent-primary);
+      font-family: var(--mono);
+      font-weight: 500;
+    }
+
+    .project p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+    }
+
+    .proj-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+      font-weight: 500;
+      font-family: var(--mono);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+    }
+
+    .tag:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: var(--glow-accent);
+    }
+
+    /* Skills */
+    .skills {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .skill {
+      background: var(--glass);
+      padding: 0.75rem 1rem;
+      border-radius: 25px;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
+      font-family: var(--mono);
+    }
+
+    .skill:hover {
+      background: var(--card-hover);
+      color: var(--text-primary);
+      border-color: var(--accent-primary);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Links */
+    a.inline {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.8125rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    a.inline:hover {
+      color: var(--accent-secondary);
+      transform: translateX(4px);
+    }
+
+    a.inline::after {
+      content: '→';
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    a.inline:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* Sidebar */
+    aside .card {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      padding: 1rem;
+      background: var(--glass);
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .contact-item:hover {
+      background: var(--card-hover);
+      border-color: var(--glass-border);
+      transform: translateX(5px);
+    }
+
+    .small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .contact-item strong,
+    .contact-item a {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+
+    /* Status Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+      border-radius: 20px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      margin-top: 0.5rem;
+    }
+
+    .status-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+      
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+      }
+      
+      .logo {
+        width: 56px;
+        height: 56px;
+      }
+      
+      .avatar {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .proj-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      
+      .links {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .btn {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.5rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
+      }
+      
+      .wrap {
+        animation-delay: 0.2s;
+      }
+    }
+
+    /* Utility Animations */
+    .animate-in {
+      animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .animate-in:nth-child(1) { animation-delay: 0.1s; }
+    .animate-in:nth-child(2) { animation-delay: 0.2s; }
+    .animate-in:nth-child(3) { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
+  <div class="scroll-progress"></div>
+
   <div class="wrap">
     <header>
       <div class="brand">
@@ -90,47 +749,57 @@
           <div class="avatar">M</div>
           <div>
             <h2>Mukesh — Backend Developer</h2>
-            <p class="muted">2.5 years building REST APIs, real-time features with SignalR, wallet & payments, and cross-platform PDF generation.</p>
-            <div class="links" style="margin-top:10px">
-              <a href="#projects" class="btn">See projects</a>
-              <a href="mailto:your.email@example.com" class="btn">Email</a>
+            <p class="muted">2.5 years building REST APIs, real-time features with SignalR, wallet & payments, and cross-platform PDF generation. Passionate about scalable backend architecture.</p>
+            <div class="links">
+              <a href="#projects" class="btn">View Projects</a>
+              <a href="mailto:mukeshsahoo.109@gmail.com" class="btn">Get in Touch</a>
             </div>
           </div>
         </div>
 
         <div id="projects" class="section">
-          <h3>Selected Projects</h3>
+          <h3>Featured Projects</h3>
           <div class="projects">
 
-            <article class="project">
-              <h4>AutoECare (Case study)</h4>
-              <div class="meta">Role: Backend lead — .NET 9, EF Core, PostgreSQL, SignalR</div>
-              <p class="muted" style="margin-top:8px">Built wallet (multi-role), Razorpay integration, commission split, transaction logging, SignalR chat, Puppeteer Sharp invoice generation, FCM notifications and analytics endpoints.</p>
+            <article class="project animate-in">
+              <h4>AutoECare (Case Study)</h4>
+              <div class="meta">Backend Lead • .NET 9, EF Core, PostgreSQL, SignalR</div>
+              <p class="muted">Built comprehensive wallet system with multi-role support, Razorpay payment integration, commission splitting logic, transaction logging, real-time SignalR chat, automated invoice generation with Puppeteer Sharp, FCM push notifications, and detailed analytics endpoints.</p>
               <div class="proj-meta">
                 <div class="tags">
-                  <span class="tag">C#</span><span class="tag">EF Core</span><span class="tag">SignalR</span><span class="tag">Razorpay</span>
+                  <span class="tag">C#</span>
+                  <span class="tag">EF Core</span>
+                  <span class="tag">SignalR</span>
+                  <span class="tag">Razorpay</span>
                 </div>
-                <div><a class="inline" href="https://github.com/YOUR_USERNAME/AutoECare-CaseStudy" target="_blank" rel="noopener">Case study →</a></div>
+                <div><a class="inline" href="https://github.com/YOUR_USERNAME/AutoECare-CaseStudy" target="_blank" rel="noopener">Case Study</a></div>
               </div>
             </article>
 
-            <article class="project">
+            <article class="project animate-in">
               <h4>Promotion Analytics Module</h4>
-              <div class="meta">Role: Feature owner — APIs for tracking & reporting</div>
-              <p class="muted" style="margin-top:8px">Date-wise views, click tracking, chat-open events, and vehicle-brand interaction reports with summary endpoints and efficient aggregation.</p>
+              <div class="meta">Feature Owner • Advanced Analytics & Reporting APIs</div>
+              <p class="muted">Engineered comprehensive tracking system with date-wise views, click event monitoring, chat interaction analytics, vehicle-brand interaction reports with summary endpoints and optimized query aggregations for high-performance data retrieval.</p>
               <div class="proj-meta">
-                <div class="tags"><span class="tag">Postgres</span><span class="tag">SQL</span><span class="tag">API</span></div>
-                <div><a class="inline" href="https://github.com/YOUR_USERNAME/promotion-analytics" target="_blank">Repo →</a></div>
+                <div class="tags">
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">SQL</span>
+                  <span class="tag">API</span>
+                </div>
+                <div><a class="inline" href="https://github.com/YOUR_USERNAME/promotion-analytics" target="_blank">Repository</a></div>
               </div>
             </article>
 
-            <article class="project">
-              <h4>Chat System (SignalR)</h4>
-              <div class="meta">Role: Implementation — Real-time messaging</div>
-              <p class="muted" style="margin-top:8px">One-to-one & group chat, typing indicators, read/delivered receipts, attachments support and online/offline tracking.</p>
+            <article class="project animate-in">
+              <h4>Real-time Chat System</h4>
+              <div class="meta">Full Implementation • SignalR WebSocket Architecture</div>
+              <p class="muted">Developed scalable real-time messaging platform with one-to-one & group chat capabilities, typing indicators, delivery/read receipts, attachment support, and comprehensive online/offline user presence tracking using SignalR hubs.</p>
               <div class="proj-meta">
-                <div class="tags"><span class="tag">SignalR</span><span class="tag">WebSocket</span></div>
-                <div><a class="inline" href="https://github.com/YOUR_USERNAME/signalr-chat" target="_blank">Repo →</a></div>
+                <div class="tags">
+                  <span class="tag">SignalR</span>
+                  <span class="tag">WebSocket</span>
+                </div>
+                <div><a class="inline" href="https://github.com/YOUR_USERNAME/signalr-chat" target="_blank">Repository</a></div>
               </div>
             </article>
 
@@ -138,8 +807,8 @@
         </div>
 
         <div id="skills" class="section">
-          <h3>Skills</h3>
-          <div class="skills" style="margin-top:8px">
+          <h3>Technical Stack</h3>
+          <div class="skills">
             <span class="skill">C#/.NET</span>
             <span class="skill">EF Core</span>
             <span class="skill">PostgreSQL</span>
@@ -149,34 +818,51 @@
             <span class="skill">Puppeteer Sharp</span>
             <span class="skill">FCM</span>
             <span class="skill">Docker</span>
+            <span class="skill">Git</span>
+            <span class="skill">Azure</span>
           </div>
         </div>
 
         <div id="resume" class="section">
-          <h3>Case study / Notes</h3>
-          <p class="muted">For private/company projects: this repo contains architecture diagrams, high-level design and screenshots with dummy data. No sensitive code or database dumps.</p>
+          <h3>Case Studies & Documentation</h3>
+          <p class="muted">For proprietary and company projects, I maintain detailed case studies featuring system architecture diagrams, high-level design documentation, and implementation screenshots with anonymized data. All repositories prioritize comprehensive documentation while respecting confidentiality agreements—no sensitive code or database schemas are exposed.</p>
         </div>
       </section>
 
       <aside>
         <div class="card">
-          <h3>Contact</h3>
-          <div class="contact-list" id="contact" style="margin-top:8px">
-            <div class="contact-item"><span class="small">Email</span><strong>mukeshsahoo.109@gmail.com</strong></div>
-            <div class="contact-item"><span class="small">GitHub</span><a class="inline" href="https://github.com/memukeshsahoo" target="_blank">github.com/memukeshsahoo</a></div>
-            <div class="contact-item"><span class="small">LinkedIn</span><a class="inline" href="https://www.linkedin.com/in/memukeshsahu" target="_blank">linkedin.com/in/memukeshsahu</a></div>
+          <h3>Let's Connect</h3>
+          <div class="contact-list" id="contact">
+            <div class="contact-item">
+              <span class="small">Email</span>
+              <strong>mukeshsahoo.109@gmail.com</strong>
+            </div>
+            <div class="contact-item">
+              <span class="small">GitHub</span>
+              <a class="inline" href="https://github.com/memukeshsahoo" target="_blank">github.com/memukeshsahoo</a>
+            </div>
+            <div class="contact-item">
+              <span class="small">LinkedIn</span>
+              <a class="inline" href="https://www.linkedin.com/in/memukeshsahu" target="_blank">linkedin.com/in/memukeshsahu</a>
+            </div>
           </div>
 
-          <div class="section" style="margin-top:14px">
+          <div class="section">
             <h3>Availability</h3>
-            <p class="muted">Open to backend roles; remote/relocation considered.</p>
+            <div class="status-badge">Available for opportunities</div>
+            <p class="muted" style="margin-top: 1rem;">Open to backend development roles with opportunities for remote work or relocation. Passionate about building scalable, efficient systems.</p>
           </div>
         </div>
 
-        <div style="height:18px"></div>
-        <footer>Built with plain HTML & CSS • Update README.md & pin repos on GitHub</footer>
+        <footer>
+          Crafted with modern web standards<br>
+          Keep your GitHub repos updated & pinned
+        </footer>
       </aside>
     </main>
   </div>
-</body>
-</html>
+
+  <script>
+    // Scroll progress indicator
+    function updateScrollProgress() {
+      const
