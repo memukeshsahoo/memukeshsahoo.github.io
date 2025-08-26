@@ -1,7 +1,7 @@
 # Mukesh - Software Developer
 
 ## 👨‍💻 About Me
-Backend Developer with 2.5 years of experience in C#, .NET Core, EF Core, and PostgreSQL. 
+Backend Developer with 3 years of experience in C#, .NET Core, EF Core, and PostgreSQL. 
 Specialized in REST API development, debugging Angular/PrimeNG apps, and building scalable solutions.
 
 ## 🚀 Skills
