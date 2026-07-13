@@ -1,21 +1,31 @@
-# Mukesh - Software Developer
+# Mukesh Kumar Sahu Portfolio
 
-## 👨‍💻 About Me
-Backend Developer with 3 years of experience in C#, .NET Core, EF Core, and PostgreSQL. 
-Specialized in REST API development, debugging Angular/PrimeNG apps, and building scalable solutions.
+Static portfolio site for GitHub Pages.
 
-## 🚀 Skills
-- Languages: C#, TypeScript, SQL
-- Frameworks: .NET Core, EF Core, Angular, SignalR
-- Databases: PostgreSQL, MySQL
-- Tools: Git, Docker, Nginx, Cloudflare
+## Structure
 
-## 📂 Projects
-- **AutoECare**: Vehicle maintenance platform (wallet system, Razorpay integration, chat system, invoices, notifications).
-- **Promotion Analytics Module**: Built custom tracking APIs for promotion views, interactions, and reporting.
-- **Chat System**: Real-time messaging with SignalR (one-to-one, group chat, read receipts, typing indicators).
-- **Invoice Generator**: Cross-platform HTML-to-PDF service using Puppeteer Sharp.
+- `index.html` - main page content
+- `assets/css/styles.css` - site styling
+- `assets/js/main.js` - small reveal-on-scroll behavior
 
-## 📫 Contact
-- LinkedIn: linkedin.com/in/memukeshsahu
-- Email: mukeshsahoo.109@gmail.com
+## Profile
+
+Full stack developer with experience in:
+
+- C#
+- .NET Core
+- ASP.NET Core
+- EF Core
+- PostgreSQL
+- REST APIs
+- SignalR
+- Angular
+- Flutter
+- Angular debugging and integration
+- Docker, Nginx, and Cloudflare
+
+## Contact
+
+- GitHub: `github.com/memukeshsahoo`
+- LinkedIn: `linkedin.com/in/memukeshsahu`
+- Email: `mukeshsahoo.109@gmail.com`
